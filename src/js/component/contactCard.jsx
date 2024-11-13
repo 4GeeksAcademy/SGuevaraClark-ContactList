@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export const ContactCard = ({fullName, address, email, phone}) => {
+export const ContactCard = ({id, fullName, address, email, phone}) => {
 
     return(
         <article className="card">
@@ -27,6 +28,10 @@ export const ContactCard = ({fullName, address, email, phone}) => {
                 <p>
                     {phone}
                 </p>
+            <div>
+                <Link to={"/contact/"+ id}>Edit</Link>
+                <button>Delete</button>
+            </div>
             </div>
             </div>
         </article>
