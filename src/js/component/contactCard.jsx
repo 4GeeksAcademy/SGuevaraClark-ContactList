@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
-export const ContactCard = ({id, fullName, address, email, phone}) => {
+export const ContactCard = (props) => {
+
+const {store, actions} = useContext(Context);
+const {id, name, address, email, phone} = props.contact
 
     return(
         <article className="card">
@@ -10,14 +14,14 @@ export const ContactCard = ({id, fullName, address, email, phone}) => {
                 <img 
                     className="rounded img-fluid"
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShg8keaWuTWemET3-1mWqZae05N8W6SLGgGg&s"
-                    alt={fullName} 
+                    alt={name} 
                     width={'200px'}
                     height={'200px'}
                     />
             </figure>
             <div className="container">
                 <p className="fs-4">
-                    {fullName}
+                    {name}
                 </p>
                 <p>
                     {address}
@@ -29,8 +33,8 @@ export const ContactCard = ({id, fullName, address, email, phone}) => {
                     {phone}
                 </p>
             <div>
-                <Link to={"/contact/"+ id}>Edit</Link>
-                <button>Delete</button>
+                <Link onClick={actions.selectContact(props.contact)} to={"/contact/"+ id}>Edit</Link>
+                <button onClick={()=> actions.deleteContact(id)} >Delete</button>
             </div>
             </div>
             </div>

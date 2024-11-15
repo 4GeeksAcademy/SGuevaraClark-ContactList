@@ -6,6 +6,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			contacts: null
 		},
 		actions: {
+
+			selectContact: (contact) => setStore({selected: contact}),
+
 			createAgenda: async () => {
 				try {
 					const response = await fetch(getStore().url+'/agendas/sebas', {
@@ -56,18 +59,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 						body: JSON.stringify(contact)
 					});
 					if(!response.ok) throw new Error('error while updating user')
-					const data = await response.json()
-					return data
+					return getActions().getUserAgenda()
+
 				} catch (error) {
 					console.log(error)
 				}
 			},
 			deleteContact: async (id) => {
 				try {
-					const response = await fetch(getStore().url+'/agendas/sebas/contacts/'+id);
+					const response = await fetch(getStore().url+'/agendas/sebas/contacts/'+id,{
+						method: 'DELETE'
+					});
 					if(!response.ok) throw new Error('error while deleting user')
-					const data = await response.json()
-					return data
+					return getActions().getUserAgenda()
 				} catch (error) {
 					console.log(error)  
 				}

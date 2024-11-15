@@ -11,11 +11,11 @@ export const Home = () => {
 	return( 
 
 	<div className="text-center mt-5">
-		<Link to={'/contact/new'}>Go to Form</Link>
+		<Link onClick={ ()=> actions.selectContact(null)} to={'/contact/new'}>Go to Form</Link>
 		{
 			store.contacts?.contacts?.map(el=>
 
-				<ContactCard key={el.id} id={el.id} name={el.name} email={el.email} address={el.address} phone={el.phone}/>
+				<ContactCard key={el.id} contact={el}/>
 			)
 		}
 		
