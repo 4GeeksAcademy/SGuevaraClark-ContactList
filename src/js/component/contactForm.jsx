@@ -22,6 +22,8 @@ export const ContactForm = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
+        store.selected? actions.updateContact(id, formData):
+        actions.createContact(formData)
     }
 
 

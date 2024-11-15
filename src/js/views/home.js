@@ -1,25 +1,24 @@
 import React from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import { ContactCard } from "../component/contactCard.jsx";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext.js";
 
 
 export const Home = () => { 
-
+	const {store, actions} = useContext(Context);
 
 	return( 
 
 	<div className="text-center mt-5">
 		<Link to={'/contact/new'}>Go to Form</Link>
-		<h1>Hello Rigo!</h1>
-		<ContactCard fullName={"sebas"} email={"sebgc23"} address={"Madrid"} phone={"88664708"}/>
-		<p>
-			<img src={rigoImage} />
-		</p>
-		<a href="#" className="btn btn-success">
-			If you see this green button, bootstrap is working
-		</a>
+		{
+			store.contacts?.contacts?.map(el=>
+
+				<ContactCard key={el.id} id={el.id} name={el.name} email={el.email} address={el.address} phone={el.phone}/>
+			)
+		}
+		
 	</div>
 );
 }

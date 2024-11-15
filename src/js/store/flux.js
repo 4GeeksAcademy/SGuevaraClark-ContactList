@@ -29,8 +29,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						body: JSON.stringify(contact)
 					});
 					if(!response.ok) throw new Error('error while creating contact')
-					const data = await response.json()
-					return data
+					return getActions().getUserAgenda()
 				} catch (error) {
 					console.log(error)
 				}
@@ -41,7 +40,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (response.status===404) return getActions().createAgenda()
 					if(!response.ok) throw new Error('error while retrieving user')
 					const data = await response.json()
-					return data
+					setStore({contacts: data})
+					return true
 				} catch (error) {
 					console.log(error)
 				}
