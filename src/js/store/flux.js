@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			url: 'https://playground.4geeks.com/contact/',
+			url: 'https://playground.4geeks.com/contact',
 			selected: null,
 			contacts: null
 		},
@@ -54,7 +54,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const response = await fetch(getStore().url+'/agendas/sebas/contacts/'+id, {
 						method: 'PUT',
 						headers: {
-							'Content Type': 'application/json'
+							'Content-Type': 'application/json'
 						} ,
 						body: JSON.stringify(contact)
 					});

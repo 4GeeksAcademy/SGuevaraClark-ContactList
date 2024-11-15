@@ -3,7 +3,7 @@ import "../../styles/home.css";
 import { ContactCard } from "../component/contactCard.jsx";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext.js";
-
+import { useContext } from "react";
 
 export const Home = () => { 
 	const {store, actions} = useContext(Context);

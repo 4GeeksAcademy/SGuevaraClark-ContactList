@@ -33,7 +33,7 @@ const {id, name, address, email, phone} = props.contact
                     {phone}
                 </p>
             <div>
-                <Link onClick={actions.selectContact(props.contact)} to={"/contact/"+ id}>Edit</Link>
+                <Link onClick={() => actions.selectContact(props.contact)} to={"/contact/"+ id}>Edit</Link>
                 <button onClick={()=> actions.deleteContact(id)} >Delete</button>
             </div>
             </div>
